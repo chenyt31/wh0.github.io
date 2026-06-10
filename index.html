@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Wh0: Generative World Models as Scalable Sources of Egocentric Human Hand Manipulation Data">
+  <meta name="keywords" content="Dexterous Manipulation, World Models, Vision-Language-Action, Egocentric Data">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wh0</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-fullhd">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">
+            <span class="title-line">Wh0: Generative World Models as Scalable Sources</span>
+            <span class="title-line">of Egocentric Human Hand Manipulation Data</span>
+          </h1>
+          <h3 class="title is-4 conference-authors">Under Review</h3>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Anonymous Author(s)</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="#" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="#" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
+                  <span>ArXiv</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="#video-carousel" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fab fa-youtube"></i></span>
+                  <span>Video</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="#" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Code</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Teaser -->
+<section class="hero teaser">
+  <div class="container is-fullhd">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns is-vcentered is-centered">
+          <div class="column is-10">
+            <video autoplay muted loop playsinline width="100%">
+              <source src="assets/video/demo.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <br>
+        <h2 class="subtitle has-text-centered">
+          <span class="dwh0">Wh0</span> uses generative video world models to synthesize
+          <b>WM-H</b>, a 50k-episode dataset of egocentric human-hand manipulation videos,
+          and co-trains it with limited robot data to unlock dexterous manipulation capabilities
+          in pretrained VLA models — improving zero-shot success from <b>8.3%</b> to <b>38.9%</b>
+          across 18 real-world tasks.
+        </h2>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Key Stats -->
+<section class="section" style="padding-top: 0;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-3">
+        <div class="stat-card">
+          <div class="stat-value">50k</div>
+          <div class="stat-label">WM-H Episodes</div>
+        </div>
+      </div>
+      <div class="column is-3">
+        <div class="stat-card">
+          <div class="stat-value">4.7×</div>
+          <div class="stat-label">Zero-Shot Improvement</div>
+        </div>
+      </div>
+      <div class="column is-3">
+        <div class="stat-card">
+          <div class="stat-value">18</div>
+          <div class="stat-label">Real-World Tasks</div>
+        </div>
+      </div>
+      <div class="column is-3">
+        <div class="stat-card">
+          <div class="stat-value">38.9%</div>
+          <div class="stat-label">Success Rate (Wh0)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Carousel -->
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3 has-text-centered" style="margin-bottom: 1.5rem;">
+        Zero-Shot Real-World Dexterous Manipulation
+      </h2>
+      <div id="video-carousel" class="video-carousel">
+        <button class="carousel-btn prev" aria-label="Previous slide">&#8249;</button>
+        <div class="carousel-viewport">
+          <div class="carousel-track"></div>
+        </div>
+        <button class="carousel-btn next" aria-label="Next slide">&#8250;</button>
+        <div class="carousel-dots"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Abstract -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Scaling dexterous manipulation requires generalization across objects, scenes, and tasks,
+            yet existing data sources face a trade-off between scale and scene/embodiment alignment:
+            teleoperation data is well aligned with robot deployment but expensive to collect;
+            simulation is scalable but limited by the sim-to-real gap; and real egocentric videos
+            scale effectively but remain misaligned with robot deployment.
+            We propose <strong>Wh0</strong>, a framework that uses generative video world models as
+            scalable and controllable sources of egocentric human-hand manipulation data to unlock
+            the manipulation capabilities of pretrained dexterous VLA models. Conditioned on language,
+            objects, and scenes, Wh0 uses a generative world model to produce <strong>WM-H</strong>,
+            a 50k-episode dataset of egocentric human-object interaction videos. Wh0 then converts
+            the generated videos into robot-trainable supervision through hand motion reconstruction
+            and visual editing. Co-trained with a limited amount of real robot data, WM-H adapts
+            pretrained VLA models to dexterous manipulation deployment. Across 18 real-world dexterous
+            manipulation tasks, compared with a model post-trained only on robot data, Wh0 improves
+            zero-shot success on unseen tasks from 8.3% to 38.9%. Ablation studies further show that
+            scalable generation and scene/embodiment alignment are key drivers of performance gains.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Overview -->
+<section class="section overview-section" style="padding-top: 0;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-12 has-text-centered">
+        <img src="assets/images/teaser.png" alt="Wh0 overview" class="section-image">
+        <p class="figure-caption">
+          <strong>Overview of Wh0.</strong>
+          <strong>Top:</strong> WM-H provides world-model-generated egocentric manipulation videos
+          with diverse objects, layouts, and hand-object interactions.
+          <strong>Middle:</strong> WM-H uniquely combines scale with low scene &amp; embodiment gap
+          to deployment; Wh0 converts them to robot-trainable supervision and co-trains with limited
+          robot data atop a human-video-pretrained VLA.
+          <strong>Bottom:</strong> The resulting policy zero-shot generalizes to unseen tasks,
+          environments, and instructions in real-world manipulation.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WM-H Pipeline -->
+<section class="section pipeline-section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-12 has-text-centered">
+        <h2 class="title is-3">WM-H Dataset Construction</h2>
+
+        <div id="wmh-pipeline" class="wmh-pipeline">
+          <div class="pipeline-timeline" role="tablist" aria-label="Pipeline steps">
+            <div class="pipeline-track">
+              <div class="pipeline-track-fill"></div>
+              <div class="pipeline-packet" aria-hidden="true"></div>
+            </div>
+            <button class="pipeline-step active" data-step="0" role="tab" aria-selected="true">
+              <span class="step-num">1</span>
+              <span class="step-label">Instruction</span>
+            </button>
+            <button class="pipeline-step" data-step="1" role="tab" aria-selected="false">
+              <span class="step-num">2</span>
+              <span class="step-label">Scene Edit</span>
+            </button>
+            <button class="pipeline-step" data-step="2" role="tab" aria-selected="false">
+              <span class="step-num">3</span>
+              <span class="step-label">Video Gen</span>
+            </button>
+            <button class="pipeline-step" data-step="3" role="tab" aria-selected="false">
+              <span class="step-num">4</span>
+              <span class="step-label">Embodiment</span>
+            </button>
+            <button class="pipeline-step" data-step="4" role="tab" aria-selected="false">
+              <span class="step-num">5</span>
+              <span class="step-label">Motion</span>
+            </button>
+            <button class="pipeline-step" data-step="5" role="tab" aria-selected="false">
+              <span class="step-num">6</span>
+              <span class="step-label">WM-H</span>
+            </button>
+          </div>
+
+          <div class="pipeline-stage">
+            <!-- Step 1: Instruction Generation -->
+            <div class="pipeline-panel active" data-panel="0">
+              <div class="panel-instruction">
+                <div class="dual-agent-row">
+                  <div class="agent-card agent-discover">
+                    <span class="agent-icon"><i class="fas fa-search"></i></span>
+                    <span class="agent-name">Agent 1</span>
+                    <span class="agent-role">Vocabulary Discovery</span>
+                    <div class="agent-chips">
+                      <span class="chip chip-noun">box</span>
+                      <span class="chip chip-adj">hard</span>
+                      <span class="chip chip-noun">clock</span>
+                      <span class="chip chip-adj">white</span>
+                    </div>
+                  </div>
+                  <div class="agent-arrow"><i class="fas fa-arrow-right"></i></div>
+                  <div class="agent-card agent-sample">
+                    <span class="agent-icon"><i class="fas fa-balance-scale"></i></span>
+                    <span class="agent-name">Agent 2</span>
+                    <span class="agent-role">Balanced Sampling</span>
+                    <div class="freq-bars">
+                      <span style="--h:40%"></span><span style="--h:65%"></span>
+                      <span style="--h:30%"></span><span style="--h:80%"></span>
+                      <span style="--h:55%"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="instruction-output">
+                  <span class="output-prefix">Instruction →</span>
+                  <span class="typing-text" data-text='pick the hard box and place it onto the white clock'></span>
+                  <span class="typing-cursor">|</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 2: Scene Alignment -->
+            <div class="pipeline-panel" data-panel="1">
+              <div class="panel-scene">
+                <div class="scene-compare">
+                  <div class="scene-frame scene-before">
+                    <img src="assets/pipeline/scene-bg.jpg" alt="Robot workspace background">
+                    <span class="frame-tag">Capture</span>
+                  </div>
+                  <div class="scene-morph-arrow">
+                    <i class="fas fa-magic"></i>
+                    <span>Qwen-Image-Edit</span>
+                  </div>
+                  <div class="scene-frame scene-after">
+                    <img src="assets/pipeline/scene-edited.jpg" alt="Scene with inserted objects">
+                    <span class="frame-tag">Insert Objects</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 3: Video Generation -->
+            <div class="pipeline-panel" data-panel="2">
+              <div class="panel-video">
+                <video class="pipeline-video" muted loop playsinline preload="metadata"
+                       data-src="assets/video/wmh/gpu0_task000000.mp4"></video>
+                <div class="video-overlay-badge">
+                  <i class="fas fa-film"></i> Wan-I2V · 4-step LightX2V
+                </div>
+                <div class="qwen-augment-card">
+                  <div class="qwen-augment-header">
+                    <i class="fas fa-wand-magic-sparkles"></i>
+                    <span>Qwen3-VL <code>augmented_text</code></span>
+                  </div>
+                  <p class="qwen-augment-text"
+                     data-text="The RIGHT hand will grasp the beige hard box and lift it from the table. It will then move the box directly onto the surface of the white clock, positioning it so that the box covers the clock face. After the action, the clock will be obscured by the box, and the box will be resting on top of the clock."></p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 4: Embodiment Alignment -->
+            <div class="pipeline-panel" data-panel="3">
+              <div class="panel-embodiment">
+                <div class="embodiment-split">
+                  <div class="embodiment-side">
+                    <video class="pipeline-video" muted loop playsinline preload="metadata"
+                           data-src="assets/video/wmh/gpu0_task000000.mp4"></video>
+                    <span class="embodiment-tag human-tag">Human Hand</span>
+                  </div>
+                  <div class="embodiment-morph">
+                    <i class="fas fa-arrow-right"></i>
+                    <span>Qwen-Image-Edit</span>
+                  </div>
+                  <div class="embodiment-side">
+                    <video class="pipeline-video" muted loop playsinline preload="metadata"
+                           data-src="assets/video/wmh-ea/gpu0_task000000.mp4"></video>
+                    <span class="embodiment-tag robot-tag">Robot Hand</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 5: Motion Extraction -->
+            <div class="pipeline-panel" data-panel="4">
+              <div class="panel-motion">
+                <video class="pipeline-video motion-video" muted loop playsinline preload="metadata"
+                       data-src="assets/pipeline/hand_motion.mp4"></video>
+                <div class="motion-badge">
+                  <i class="fas fa-cube"></i> HaWoR → MANO 3D Pose
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 6: WM-H Output -->
+            <div class="pipeline-panel" data-panel="5">
+              <div class="panel-output">
+                <div class="scale-badge">
+                  <i class="fas fa-microchip"></i>
+                  <span>Compute-driven scaling &mdash; zero human labor</span>
+                </div>
+                <div class="output-episodes">
+                  <span class="episode-counter" data-target="50000">0</span>
+                  <span class="episode-label">episodes</span>
+                </div>
+                <div class="scale-bar-wrap">
+                  <div class="scale-bar-fill"></div>
+                  <span class="scale-tick scale-tick-1k">1k</span>
+                  <span class="scale-tick scale-tick-50k">50k</span>
+                </div>
+                <div class="gpu-cost-row">
+                  <div class="gpu-cost-unit">
+                    <span class="gpu-unit-value">5.44</span>
+                    <span class="gpu-unit-label">GPU-hrs / 1k videos</span>
+                  </div>
+                  <span class="scale-op">&times; 50</span>
+                  <div class="gpu-cost-total">
+                    <span class="gpu-hours-counter" data-target="272">0</span>
+                    <span class="gpu-unit-label">GPU-hrs total</span>
+                  </div>
+                </div>
+                <div class="scale-contrast">
+                  <span class="contrast-yes"><i class="fas fa-image"></i> Scene alignment</span>
+                  <span class="contrast-yes"><i class="fas fa-robot"></i> Embodiment alignment</span>
+                  <span class="contrast-no"><i class="fas fa-person-digging"></i> No labor</span>
+                  <span class="contrast-yes"><i class="fas fa-server"></i> Scale with GPUs</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pipeline-caption">
+            <h3 class="pipeline-step-title">Instruction Generation</h3>
+            <p class="pipeline-step-desc">
+              A dual-agent LLM system discovers object nouns &amp; adjectives, then preferentially
+              samples under-represented words to compose balanced manipulation instructions.
+            </p>
+          </div>
+
+          <div class="pipeline-controls">
+            <button class="pipeline-ctrl prev" aria-label="Previous step"><i class="fas fa-chevron-left"></i></button>
+            <button class="pipeline-ctrl play-pause" aria-label="Pause auto-play"><i class="fas fa-pause"></i></button>
+            <button class="pipeline-ctrl next" aria-label="Next step"><i class="fas fa-chevron-right"></i></button>
+          </div>
+        </div>
+
+        <p class="figure-caption" style="margin-top: 1.5rem;">
+          <strong>WM-H data synthesis pipeline.</strong>
+          Click any step or use the controls to walk through how raw prompts become
+          50k robot-trainable egocentric manipulation episodes.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WM-H Videos -->
+<section class="hero is-small carousel-section-wmh">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3 has-text-centered" style="margin-bottom: 1.5rem;">WM-H</h2>
+      <div id="wmh-carousel" class="video-carousel">
+        <button class="carousel-btn prev" aria-label="Previous slide">&#8249;</button>
+        <div class="carousel-viewport">
+          <div class="carousel-track"></div>
+        </div>
+        <button class="carousel-btn next" aria-label="Next slide">&#8250;</button>
+        <div class="carousel-dots"></div>
+      </div>
+      <p class="figure-caption carousel-summary">
+        <span class="carousel-summary-block">
+          <strong>Construction.</strong>
+          Full pipeline: balanced instruction generation, scene-aligned object insertion into robot
+          workspace captures, Wan-I2V video synthesis, and HaWoR 3D hand motion extraction.
+        </span>
+        <span class="carousel-summary-block">
+          <strong>Training.</strong>
+          Co-trained as the primary data source (68% of each batch) with teleop and
+          embodiment-aligned frames to scale dexterous policy learning beyond limited robot demos.
+        </span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- WM-H w/o Scene Alignment Videos -->
+<section class="hero is-small carousel-section-wmh-wo-sa">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3 has-text-centered" style="margin-bottom: 1.5rem;">WM-H w/o Scene Alignment</h2>
+      <div id="wmh-wo-sa-carousel" class="video-carousel">
+        <button class="carousel-btn prev" aria-label="Previous slide">&#8249;</button>
+        <div class="carousel-viewport">
+          <div class="carousel-track"></div>
+        </div>
+        <button class="carousel-btn next" aria-label="Next slide">&#8250;</button>
+        <div class="carousel-dots"></div>
+      </div>
+      <p class="figure-caption carousel-summary">
+        <span class="carousel-summary-block">
+          <strong>Construction.</strong>
+          Same generation pipeline, but initial frames are sampled from Ego4D instead of
+          robot-workspace captures with scene editing, yielding videos in everyday unconstrained
+          environments.
+        </span>
+        <span class="carousel-summary-block">
+          <strong>Training.</strong>
+          An ablation variant co-trained in place of full WM-H to measure how scene misalignment
+          limits grounding and real-world task success.
+        </span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- WM-H w/ Embodiment Alignment Videos -->
+<section class="hero is-small carousel-section-wmh-ea">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3 has-text-centered" style="margin-bottom: 1.5rem;">WM-H w/ Embodiment Alignment</h2>
+      <div id="wmh-ea-carousel" class="video-carousel">
+        <button class="carousel-btn prev" aria-label="Previous slide">&#8249;</button>
+        <div class="carousel-viewport">
+          <div class="carousel-track"></div>
+        </div>
+        <button class="carousel-btn next" aria-label="Next slide">&#8250;</button>
+        <div class="carousel-dots"></div>
+      </div>
+      <p class="figure-caption carousel-summary">
+        <span class="carousel-summary-block">
+          <strong>Construction.</strong>
+          Qwen-Image-Edit replaces the human hand with a realistic dexterous robot hand on sparsely
+          sampled frames, preserving pose and hand-object contact.
+        </span>
+        <span class="carousel-summary-block">
+          <strong>Training.</strong>
+          Mixed into co-training at 4% to keep action features stable under robot-hand appearance
+          and improve embodiment transfer at deployment.
+        </span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Policy -->
+<section class="section policy-section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-12 has-text-centered">
+        <h2 class="title is-3">Policy Learning with Human-Robot Alignment</h2>
+        <img src="assets/images/model2.png" alt="Policy architecture" class="section-image">
+        <p class="figure-caption">
+          <strong>Policy architecture and data composition.</strong>
+          A VITRA-style policy denoises actions in the unified MANO space, conditioned on
+          PaliGemma cognition features, FoV, and current hand state. Wh0 co-trains 50k WM-H
+          samples with 400 teleoperated robot demonstrations (28% teleop, 68% WM-H, 4% WM-H w/ Embodiment Alignment).
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Results -->
+<section class="section" style="padding-top: 0;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-12 has-text-centered">
+        <h2 class="title is-3">Real-World Results</h2>
+        <div class="results-figure">
+        <img src="assets/images/exp-setup.png" alt="Real-world evaluation setup" class="section-image">
+        <table class="table is-bordered is-striped results-table">
+          <thead>
+            <tr>
+              <th rowspan="2">Method</th>
+              <th colspan="3">Training Setup</th>
+              <th rowspan="2">Success Rate (%) ↑</th>
+            </tr>
+            <tr>
+              <th>Pretraining</th>
+              <th>Adaptation Data</th>
+              <th>Strategy</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="method-name">π<sub>0.5</sub></td>
+              <td>Robot</td>
+              <td>Teleop</td>
+              <td>FT</td>
+              <td class="success-rate">7.78<sub>±15.6</sub></td>
+            </tr>
+            <tr>
+              <td class="method-name">VITRA</td>
+              <td>Human</td>
+              <td>Teleop</td>
+              <td>FT</td>
+              <td class="success-rate">8.3<sub>±8.6</sub></td>
+            </tr>
+            <tr>
+              <td class="method-name">VITRA Real Version</td>
+              <td>Human</td>
+              <td>Teleop + Real Ego</td>
+              <td>Co-FT</td>
+              <td class="success-rate">21.4<sub>±23.4</sub></td>
+            </tr>
+            <tr class="highlight-row">
+              <td class="method-name"><strong>Wh0</strong></td>
+              <td>Human</td>
+              <td>Teleop + WM-H</td>
+              <td>Co-FT</td>
+              <td class="success-rate"><strong>38.9<sub>±19.8</sub></strong></td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="figure-caption">
+          <strong>Real-world evaluation and dexterous manipulation performance.</strong>
+          Unitree G1 with Inspire hands and a head-mounted egocentric camera (teleop via Vision Pro);
+          evaluation spans unseen objects and one seen plus three unseen backgrounds.
+          We compare different pretraining sources and adaptation data under the same real-robot
+          evaluation protocol.
+          FT denotes fine-tuning on a single adaptation source, while Co-FT denotes joint fine-tuning
+          on multiple data sources.
+        </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BibTeX -->
+<section class="section" style="padding-top: 0;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-10 has-text-centered">
+        <h2 class="title is-3">BibTeX</h2>
+        <pre class="bibtex-block"><code>@misc{wh0_2026,
+  title={Wh0: Generative World Models as Scalable Sources of Egocentric Human Hand Manipulation Data},
+  author={Anonymous},
+  note={Under review},
+  year={2026}
+}</code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content has-text-centered">
+          <p>
+            Website template inspired by
+            <a href="https://voxposer.github.io/">VoxPoser</a>,
+            <a href="https://nerfies.github.io/">NeRFies</a>, and
+            <a href="https://peract.github.io/">PerAct</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="./data/manifest.js"></script>
+<script src="./data/assets.js"></script>
+<script src="./js/index.js"></script>
+</body>
+</html>
