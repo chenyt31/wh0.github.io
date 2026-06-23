@@ -88,6 +88,16 @@ body {
   display: inline-block;
 }
 
+.publication-affiliations {
+  color: #666;
+  margin-top: 0.5rem;
+}
+
+.publication-footnotes {
+  color: #888;
+  margin-top: 0.5rem;
+}
+
 .publication-video {
   position: relative;
   width: 100%;
